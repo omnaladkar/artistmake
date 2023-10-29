@@ -98,7 +98,7 @@
 //     }
 // }
 
-import Doctor from "../models/DoctorSchema";
+import Doctor from "../models/DoctorSchema.js";
 
 export const updateDoctor = async (req, res) => {
     const id = req.params.id;

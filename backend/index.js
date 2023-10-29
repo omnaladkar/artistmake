@@ -3,10 +3,10 @@ import cookieParser from "cookie-parser"
 import cors from "cors"
 import mongoose from "mongoose"
 import dotenv from 'dotenv'
-import authRoute from "./Routes/auth"
-import userRoute from "./Routes/user"
-import DoctorRoute from "./Routes/doctors"
-import reviewRoute from "./Routes/review"
+import authRoute from "./Routes/auth.js"
+import userRoute from "./Routes/user.js"
+import DoctorRoute from "./Routes/doctors.js"
+import reviewRoute from "./Routes/review.js"
 
 dotenv.config()
 
