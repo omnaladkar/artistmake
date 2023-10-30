@@ -68,6 +68,28 @@ export const Signup = () => {
       {/* Rest of your JSX */}
       <div className="mb-5">
         {/* Existing input fields */}
+        <input type="text"
+          placeholder='Please enter your name'
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+          className='w-full pr-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor  cursor-pointer'
+          required
+        />
+      </div>
+      <div className="mb-5">
+        {/* Existing input fields */}
+        <input type="email"
+          placeholder='Please enter your emal'
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          className='w-full pr-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor  cursor-pointer'
+          required
+        />
+      </div>
+      <div className="mb-5">
+        {/* Existing input fields */}
         <input type="password"
           placeholder='Please enter your password'
           name="password"
@@ -79,7 +101,7 @@ export const Signup = () => {
       </div>
       {/* Rest of your form */}
       <div className="mt-7">
-        <button disabled={loading && true} type='submit' className='w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3'>
+        <button onClick={submitHandler} disabled={loading && true} type='submit' className='w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3'>
           {loading ? <HashLoader size={35} color='#ffffff' /> : 'Sign up'}
         </button>
       </div>

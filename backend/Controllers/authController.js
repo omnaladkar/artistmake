@@ -23,7 +23,7 @@ const {email,password,name,role,photo,gender} = req.body
         else if(role ==='doctor'){
             user = await Doctor.findOne({email})
         }
-        if(!user){
+        if(user){
             return res.status(400).json({message:'User already exist'})
 
         }
@@ -84,7 +84,7 @@ export const login  = async(req,res) => {
     
     }
     const token = generateToken(user);
-    const {password,role,appointments,...rest} = user._d
+    const {password,role,appointments,...rest} = user._id
 
     res.status(200).json({
         status:true,message:"successFull login",token, data:{...rest},role
