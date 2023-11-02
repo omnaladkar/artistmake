@@ -15,10 +15,11 @@ const {email,password,name,role,photo,gender} = req.body
 
 
 
+
     try {
         let user = null
         if(role === 'patient'){
-            user  = await User.find({email})
+            user  = await User.findOne({email})
         }
         else if(role ==='doctor'){
             user = await Doctor.findOne({email})
@@ -78,13 +79,13 @@ export const login  = async(req,res) => {
        return res.status(404).json({message:"user not found"})
 
     }
-    const isPasswordMatch = await bcrypt.compare(req.user.password,user.password)
+    const isPasswordMatch = await bcrypt.compare(req.body.password,user.password)
     if(!isPasswordMatch){
         return res.status(400).json({status:false,message:"Invalid creditials"});
     
     }
     const token = generateToken(user);
-    const {password,role,appointments,...rest} = user._id
+    const {password,role,appointments,...rest} = user._doc
 
     res.status(200).json({
         status:true,message:"successFull login",token, data:{...rest},role

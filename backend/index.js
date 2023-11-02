@@ -40,9 +40,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors(corsOptions));
 app.use('/api/v1/auth',authRoute)
-app.use('api/v1/users',userRoute)
-app.use('api/v1/doctors',DoctorRoute)
-app.use('api/v1/reviews',reviewRoute)
+app.use('/api/v1/users',userRoute)
+app.use('/api/v1/doctors',DoctorRoute)
+app.use('/api/v1/reviews',reviewRoute)
 
 
 app.listen(port,()=> {

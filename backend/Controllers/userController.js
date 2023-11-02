@@ -30,7 +30,7 @@ export const getSingleUser =async(req,res) => {
     const id = req.params.id;
 
     try {
-      const user =  await User.findById(id).select("-password");
+      const user =  await User.findById(id).select('-password');
 
         res.status(200).json({
             success:true,
@@ -59,23 +59,23 @@ export const deleteUser =async(req,res) => {
 
         res.status(200).json({
             success:true,
-            message:"successfully updates",
+            message:"successfully deleteds",
            
         })
     } catch (err) {
         res.status(500).json({
             success:false,
-            message:"Failed to update"
+            message:"Failed to ddeletete"
         });
         
     }
 }
 
 export const getAllUser =async(req,res) => {
-    const id = req.params.id;
+   
 
     try {
-      const users =  await User.find({}).select("-password");
+      const users =  await User.find({}).select('-password');
 
         res.status(200).json({
             success:true,
@@ -95,7 +95,7 @@ export const getAllUser =async(req,res) => {
 export const getUserProfile  =  async(req,res)=>{
     const userId = req.userId
     try {
-        const userId = await User.findById(userId)
+        const user = await User.findById(userId)
 
         if(!user){
             return res.status(404).json({success:false,message:'Useer not found'})
