@@ -12,9 +12,12 @@ const UsefetchData = (url) => {
       setLoading(true);
       try {
         const res = await fetch(url, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+          headers: { Authorization: `Bearer ${token}` 
+              },
 
+          
+        });
+        console.log(token)
         if (!res.ok) {
           const result = await res.json();
           throw new Error(result.message);

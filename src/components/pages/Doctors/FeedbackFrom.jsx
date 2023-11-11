@@ -1,23 +1,52 @@
 import React,{useState} from 'react'
 import { AiFillStar } from 'react-icons/ai'
+import { BASE_URL } from '../../../config';
 
 export default function FeedbackFrom() {
 
     const [rating,setRating] = useState(0);
     const [hover,setHover] = useState(0);
     const [reviewText,setReviewText] = useState(0);
-
-    const handleSubmitReview = async e=> {
+  
+    const handleSubmitReview = async (e) => {
         e.preventDefault();
-    }
+    
+        try {
+          const response = await fetch(`${BASE_URL}/api/v1/doctors/${id}/`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              rating,
+              reviewText,
+            }),
+          });
+    
+          if (response.ok) {
+            // Success: review submitted
+            console.log('Review submitted successfully');
+            // Optionally, you can reset the form state after successful submission
+            setRating(0);
+            setHover(0);
+            setReviewText('');
+          } else {
+            // Error: handle the error response
+            const errorData = await response.json();
+            console.error('Error submitting review:', errorData.message);
+          }
+        } catch (error) {
+          console.error('Error submitting review:', error.message);
+        }
+      };
   return (
-    <form action="">
+    <form action="" onSubmit={handleSubmitReview}>
     <div>
         <h3 className="text-headingColor text-[16px] leading-6 font-semibold mb-4">
             How would you rate the overall experience?*
         </h3>
         <div>
-            {[...Array(5).keys()].map((index) => {
+            {[...Array(5).keys()].map((_,index) => {
                 index += 1;
                 return (
                     <button

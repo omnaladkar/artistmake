@@ -27,9 +27,9 @@
   .header {
     @apply bg-[url('./assets/images/mask.png')] bg-no-repeat bg-center bg-cover w-full h-[100px] leading-[100px];
   }
-  .hero_section{
+  /* .hero_section{
     @apply bg-[url('./assets/images/hero-bg.png')]
-  }
+  } */
 
   .form_label {
    @apply text-textColor font-semibold text-[16px] mb-2 ;

@@ -2,9 +2,11 @@ import React from 'react'
 import starIcon from "../../assets/images/Star.png"
 import { Link } from 'react-router-dom'
 import { BsArrowRight } from 'react-icons/bs'
+import DoctorAbout from '../pages/Doctors/DoctorAbout'
+import DoctorsDetails from '../pages/Doctors/DoctorsDetails'
 export default function DoctorCard({doctor}) {
 
-    const {name,avgRating,totalRating,photo,specialization,totalPatient,hospital} = doctor
+    const {_id,name,avgRating,totalRating,photo,specialization,totalPatient,hospital} = doctor
   return (
     <div className="p-3 lg:p-5">
         <div>
@@ -38,8 +40,9 @@ font-semibold text-headingColor">
             </p>
         </div>
 
-        <Link to="doctors" className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
+        <Link to={`/doctors/${_id}`} className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
         <BsArrowRight className='group-hover:text-white w-6 h-5'/> 
+        
         </Link>
     </div>
 

@@ -83,7 +83,7 @@ export const Home = () => {
       </div>
     </section>
 
-    // ======== hhero Section edn
+    
 
     <section>
      <div className="container">
@@ -135,7 +135,7 @@ export const Home = () => {
 
         World-Classcare for everyone our health sysytem offers unmatched expert
         </p>
-        <Link to="doctors" className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
+        <Link to="/doctors" className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none'>
         <BsArrowRight className='group-hover:text-white w-6 h-5'/> 
         </Link>
     

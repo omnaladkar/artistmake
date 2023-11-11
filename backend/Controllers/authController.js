@@ -69,6 +69,8 @@ export const login  = async(req,res) => {
     const patient = await User.findOne({email})
     const doctor = await  Doctor.findOne({email})
 
+    console.log(doctor);
+
     if(patient){
         user = patient
     }

@@ -203,8 +203,10 @@ export const getAllDoctor = async (req, res) => {
 
 export const getDoctorProfile = async(req,res)=>{
     const doctorId = req.userId
+    console.log(doctorId)
     try {
-        const doctor = await Doctor.findById(userId)
+        const doctor = await Doctor.findById(doctorId)
+        console.log(doctor)
 
         if(!doctor){
             return res.status(404).json({success:false,message:'Docotr not found'})

@@ -17,7 +17,7 @@ export default function Contact() {
           type="email"
           id="email"
           placeholder='example@gmail.com'
-          className='form_inpput mt-1'/>
+          className='form_input mt-1'/>
         </div>
         <div>
           <label htmlFor="subject" className='form_label'>
@@ -27,7 +27,7 @@ export default function Contact() {
           type="text"
           id="subject"
           placeholder='Write what you want'
-          className='form_inpput mt-1'/>
+          className='form_input mt-1'/>
         </div>
         <div  className='sm:col-span-2'>
           <label htmlFor="message" className='form_label'>

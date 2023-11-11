@@ -10,7 +10,7 @@ const uploadImageToCloudinary = async  file => {
     uploadData.append('upload_preset',"makeupartist")
     uploadData.append('cloud_name', "dgcxd9d8q")
     
-    const res = await fetch("https://api.cloudinary.com/v1_1/dgcxd9d8q/image/uplod",
+    const res = await fetch("https://api.cloudinary.com/v1_1/dgcxd9d8q/image/upload",
     {
         method:"post",
         body:uploadData,

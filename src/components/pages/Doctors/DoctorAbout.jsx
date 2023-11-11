@@ -1,13 +1,15 @@
 import React from 'react'
 import { formateDate } from '../../../utils/formateDate'
-export default function DoctorAbout() {
+export default function DoctorAbout({name,hospital,specialization,education}) {
+    
+
   return (
    <div>
     
     <div>
     <h3 className="text-[20px] leading-[30px] text-headingColor font-semibold flex items-center gap-2">
         About of
-        <span className="text-irisBlueColor font-bold text-[24px] leading-9">Muhibur Rahman</span>
+        <span className="text-irisBlueColor font-bold text-[24px] leading-9">{name}</span>
     </h3>
     <p className="text_para">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis eius assumenda corrupti at fugiat ipsum odio laudantium quisquam veritatis consectetur velit illo ullam animi necessitatibus vero voluptatum fuga consequuntur, aspernatur perspiciatis adipisci. Necessitatibus et non sapiente sit distinctio, repellat illo totam perspiciatis, inventore ex assumenda odit natus cumque saepe nostrum?
@@ -28,12 +30,12 @@ export default function DoctorAbout() {
                   {formateDate('23-6-2010')} -{formateDate('23-6-2006')}
                 </span>
                 <p className="text-[16px] leading-6 font-medium text-textColor">
-                    PHD in Surgeon
+                    {specialization}
                 </p>
 
             </div>
             <p className='text-[14px] leading-6 font-medium text-textColor'>
-                New Appolo Hospital , New York
+                {hospital}
             </p>
         </li>
         <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
@@ -42,12 +44,12 @@ export default function DoctorAbout() {
                 {formateDate('23-6-2010')} -{formateDate('23-6-2006')}
                 </span>
                 <p className="text-[16px] leading-6 font-medium text-textColor">
-                    PHD in Surgeon
+                    {specialization}
                 </p>
 
             </div>
             <p className='text-[14px] leading-6 font-medium text-textColor'>
-                New Appolo Hospital , New York
+                {hospital}
             </p>
         </li>
     </ul>

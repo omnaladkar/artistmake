@@ -14,6 +14,7 @@ import MyAccount from '../Dashboard/user-account/MyAccount.jsx'
 import Dashboard from "../Dashboard/doctor-account/Dashboard"
 
 import ProtectedRoute from './ProtectedRoute'
+import Profile from '../Dashboard/user-account/Profile.jsx'
 
 export default function Routers() {
   return (
@@ -26,11 +27,11 @@ export default function Routers() {
         <Route path='/makeup' element={<Makeup/>}/>
         <Route path='/doctors' element={<Doctors/>}/>
         <Route path='/doctors/:id' element={<DoctorsDetails/>}/>
+        <Route path='/doctors/doctors' element={<DoctorAbout/>}/>
         <Route path='/contact' element={<Contact/>}/>
-        <Route path='/users/profile/me' element={<ProtectedRoute allowedRoles={['patient']}>
-          <MyAccount/>
-        </ProtectedRoute>}/>
-        <Route path='/doctors/profile/me' element={<ProtectedRoute allowedRoles={['doctor']}><Dashboard/></ProtectedRoute>}/>
+        <Route path='/users/profiles/me' element={<MyAccount/>} />
+          <Route path='/users/profile/me/profile' element={<Profile/>} />
+        <Route path='/doctor/profile/me' element={<Dashboard/>}/>
 
 
     </Routes>

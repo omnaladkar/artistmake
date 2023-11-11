@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { authContext } from '../../context/AuthContext.js';
 import HashLoader from "react-spinners/HashLoader";
 
-const BASE_URL = 'YOUR_BASE_URL'; // Define your base URL
+import {BASE_URL} from '../../config.js'// Define your base URL
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -24,6 +24,7 @@ export default function Login() {
     event.preventDefault();
 
     setLoading(true);
+    dispatch({ type: "LOGIN_START" });
     try {
       const res = await fetch(`${BASE_URL}/api/v1/auth/login`, {
         method: 'post',
@@ -69,7 +70,7 @@ export default function Login() {
         <form action="" className="py-4 md:px-0" onSubmit={submitHandler}>
           <div className="mb-5">
             <input
-              type="text"
+              type="email"
               placeholder='Enter Your Email'
               name="email"
               value={formData.email}
