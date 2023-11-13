@@ -3,6 +3,7 @@ import {updateDoctor,deleteDoctor,getAllDoctor,getSingleDoctor, getDoctorProfile
 import { authenticate,restrict } from "../auth/verifyToken.js"
 
 import reviewRouter from "./review.js"
+import bookingRouter from "./booking.js"
 
 
 
@@ -10,6 +11,7 @@ import reviewRouter from "./review.js"
 const router= express.Router()
 
 router.use("/:doctorId/reviews",reviewRouter);
+router.use("/:doctorId/bookings",bookingRouter);
 
 router.get('/:id',getSingleDoctor)
 router.get('/',getAllDoctor)

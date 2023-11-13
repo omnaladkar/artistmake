@@ -1,18 +1,20 @@
 import React,{useState} from 'react'
 import { AiFillStar } from 'react-icons/ai'
 import { BASE_URL } from '../../../config';
+import { useParams } from 'react-router';
+
 
 export default function FeedbackFrom() {
 
     const [rating,setRating] = useState(0);
     const [hover,setHover] = useState(0);
     const [reviewText,setReviewText] = useState(0);
-  
+    const {id} = useParams();
     const handleSubmitReview = async (e) => {
-        e.preventDefault();
+        e.preventDefault();   
     
         try {
-          const response = await fetch(`${BASE_URL}/api/v1/doctors/${id}/`, {
+          const response = await fetch(`${BASE_URL}/api/v1/doctors/${id}/reviews`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
