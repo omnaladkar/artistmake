@@ -1,24 +1,22 @@
+
+
+
+
+
 import mongoose from "mongoose";
+import Doctor from "./DoctorSchema.js";
 
-let Booking;
-
-try {
-    // Check if the model already exists
-    Booking = mongoose.model("Booking");
-} catch (error) {
-    // If it doesn't exist, define the model
-    const bookingSchema = new mongoose.Schema({
-        doctor: {
-            type: mongoose.Types.ObjectId,
-            ref: "Doctor",
-            required: true,
-        },
-        user: {
-            type: mongoose.Types.ObjectId,
-            ref: "User",
-            required: true,
-        },
-        ticketPrice: { type: String, required: true },
+const bookingSchema = new mongoose.Schema(
+  {
+    doctor: {
+      type: mongoose.Types.ObjectId,
+      ref: "Doctor",
+    },
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: "User",
+    },
+    ticketPrice: { type: String, required: true },
         appointmentDate: {
             type: Date,
             required: true,
@@ -32,10 +30,39 @@ try {
             type: Boolean,
             default: true,
         },
-    }, { timestamps: true });
+    },
+  
+  { timestamps: true });
 
-    Booking = mongoose.model("Booking", bookingSchema);
-}
+  bookingSchema.pre(/^find/,function(next){
+    this.populate({
+        path:'user',
+        select:"name photo",
+    });
 
-export default Booking;
+    next();
+  })
 
+  bookingSchema.statics.calcBooking = async function(doctorId){
+    const stats = await this.aggregate([{
+        $match:{doctor:doctorId},
+    },{
+        $group: {
+            _id:'$doctor',
+            numOfRating: {$sum:1},
+            avgBooking:{$avg:'$booking'}
+        }
+    }]);
+
+    
+
+ 
+  }
+  bookingSchema.post('save',function()
+  {
+    this.constructor.calcBooking(this.doctor)
+
+  })
+
+
+export default mongoose.model("Booking", bookingSchema);
