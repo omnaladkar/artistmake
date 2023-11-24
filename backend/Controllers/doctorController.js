@@ -129,7 +129,7 @@ export const getSingleDoctor = async (req, res) => {
     
 
     try {
-        const doctor = await Doctor.findById(id).populate("reviews").select("-password");
+        const doctor = await Doctor.findById(id).populate("reviews","appointments").select("-password");
   console.log("om heere");
   console.log(doctor)
         if (doctor) {

@@ -1,13 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Calendar from 'react-calendar';
 import TimePicker from 'react-time-picker';
+import { BASE_URL } from '../../../config';
+import { useParams } from 'react-router-dom';
 
 export default function SidePanel() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState('10:00');
   const [openCal, setOpenCal] = useState(false);
+  const [bookings, setBookings] = useState([]);
+
+  const {id} = useParams();
+
+  useEffect(() => {
+    fetchBookingDetails();
+    
+  }, []);
+  
+
+ 
+
+  const fetchBookingDetails = async () => {
+    try {
+      const response = await fetch(`${BASE_URL}/api/v1/doctors/${id}/bookings/`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const bookingData = await response.json();
+      setBookings(bookingData);
+      console.log('Booking details:', bookingData);
+    } catch (error) {
+      console.error('Error fetching booking details:', error.message);
+    }
+  };
+  
+
+
+
+
+
+
+
+
+
 
   const handleDateChange = (date) => {
+    console.log(date);
     setSelectedDate(date);
   };
 
@@ -15,12 +53,42 @@ export default function SidePanel() {
     setSelectedTime(time);
   };
 
-  const handleBookAppointment = () => {
+  const handleBookAppointment = async() => {
     
-    console.log('Booking appointment:', selectedDate, selectedTime);
+  
+    try {
+          const response = await fetch(`${BASE_URL}/api/v1/doctors/${id}/bookings/`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              ticketPrice: 700, 
+  appointmentDate: selectedDate.toISOString() ,
 
-    
-    setOpenCal(false);
+
+             
+            }),
+          });
+
+   
+// "Booking validation failed: appointmentDate: Path `appointmentDate` is required., ticketPrice: Path `ticketPrice` is required."
+      
+          if (response.ok) {
+            console.log('Appointment booked successfully!');
+            
+          } else {
+            console.error('Failed to book appointment:', response.status);
+        
+          }
+          
+          setOpenCal(false);
+        } catch (error) {
+          console.error('Error booking appointment:', error);
+          
+        }
+
+ 
   };
 
   return (
@@ -38,8 +106,11 @@ export default function SidePanel() {
           Available Time Slots:
         </p>
         <ul className="mt-3">
-          {/* Your existing time slots */}
-          {/* ... */}
+          {bookings.map((booking) => (
+            <li key={booking._id}>
+              {new Date(booking.appointmentDate).toLocaleString()}
+            </li>
+          ))}
         </ul>
       </div>
 

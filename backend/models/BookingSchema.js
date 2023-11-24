@@ -10,7 +10,7 @@ const bookingSchema = new mongoose.Schema(
   {
     doctor: {
       type: mongoose.Types.ObjectId,
-      ref: "Doctor",
+      ref: Doctor,
     },
     user: {
       type: mongoose.Types.ObjectId,
@@ -34,35 +34,10 @@ const bookingSchema = new mongoose.Schema(
   
   { timestamps: true });
 
-  bookingSchema.pre(/^find/,function(next){
-    this.populate({
-        path:'user',
-        select:"name photo",
-    });
-
-    next();
-  })
-
-  bookingSchema.statics.calcBooking = async function(doctorId){
-    const stats = await this.aggregate([{
-        $match:{doctor:doctorId},
-    },{
-        $group: {
-            _id:'$doctor',
-            numOfRating: {$sum:1},
-            avgBooking:{$avg:'$booking'}
-        }
-    }]);
-
-    
+  
 
  
-  }
-  bookingSchema.post('save',function()
-  {
-    this.constructor.calcBooking(this.doctor)
-
-  })
+ 
 
 
 export default mongoose.model("Booking", bookingSchema);

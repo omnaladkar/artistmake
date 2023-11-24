@@ -17,8 +17,8 @@ export default function Feedback() {
         const response = await fetch(`${BASE_URL}/api/v1/doctors/${id}/reviews`);
         const data = await response.json();
     
-        if (data) {
-          setReviews(data);
+        if (Array.isArray(data.data)) {
+          setReviews(data.data);
         } else {
           console.error('Error fetching reviews: The API response did not contain a valid reviews array');
         }
@@ -34,10 +34,10 @@ export default function Feedback() {
     <div>
       <div className="mb-[50px]">
         <h4 className="text-[20px] leading-[30px] font-bold text-headingColor mb-[30px]">
-          All reviews ({reviews[0]})
+          All reviews ({reviews.length})
         </h4>
      
-         { reviews.map((review) => (
+        { reviews.map((review) => (
           <div key={review._id} className="flex justify-between gap-10 mb-[30px]">
             <div className="flex gap-3">
               <div>
