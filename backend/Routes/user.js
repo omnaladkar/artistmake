@@ -1,5 +1,5 @@
 import express from "express"
-import {updateUser,deleteUser,getAllUser,getSingleUser, getMyAppointments,getUserProfile } from "../Controllers/userController.js"
+import {updateUser,deleteUser,getAllUser,getSingleUser,getUserProfile } from "../Controllers/userController.js"
 import { authenticate,restrict } from "../auth/verifyToken.js"
 
 const router= express.Router()
@@ -9,6 +9,6 @@ router.get('/',authenticate,restrict(["admin"]),getAllUser)
 router.put('/:id',authenticate,updateUser)
 router.delete('/:id',authenticate,deleteUser) 
 router.get("/profile/me",authenticate,getUserProfile);
-router.get("/appointment/my-appointments",authenticate,getMyAppointments);
+// router.get(":id/appointment/my-appointments",getMyAppointments);
 
 export default router

@@ -20,31 +20,31 @@ console.log(doctorId)
   }
 };
 
-// export const getAllBookings = async (req, res) => {
-//   try {
-//       const query = req.query.query;
-//       let bookings;
+export const getAlluserBookings = async (req, res) => {
+  try {
+      const query = req.query.query;
+      let bookings;
 
-//       if (query) {
-//           bookings = await Booking.find({
-//               isApproved: 'approved',
-//           });
-//       } else {
-//           bookings = await Booking.find();
-//       }
+      if (query) {
+          bookings = await Booking.find({
+              isApproved: 'approved',
+          });
+      } else {
+          bookings = await Booking.find();
+      }
 
-//       res.status(200).json({
-//           success: true,
-//           message: "Bookings found",
-//           data: doctors,
-//       });
-//   } catch (err) {
-//       res.status(500).json({
-//           success: false,
-//           message: "Error finding doctors",
-//       });
-//   }
-// };
+      res.status(200).json({
+          success: true,
+          message: "Bookings found",
+          data: doctors,
+      });
+  } catch (err) {
+      res.status(500).json({
+          success: false,
+          message: "Error finding doctors",
+      });
+  }
+};
 
 
 // Controller for getting a specific booking by ID

@@ -1,5 +1,5 @@
 import express from 'express';
-import { getAllBookings, getBookingById, createBooking } from '../Controllers/bookingController.js';
+import { getAllBookings, getBookingById, createBooking,  getAlluserBookings } from '../Controllers/bookingController.js';
 
 
 
@@ -8,4 +8,5 @@ import { getAllBookings, getBookingById, createBooking } from '../Controllers/bo
 const router  = express.Router({mergeParams:true});
 
 router.route("/").get(getAllBookings).get(getBookingById).post(createBooking);
+router.route("/:id").get(getAlluserBookings);
 export default router;

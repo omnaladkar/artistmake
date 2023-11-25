@@ -12,6 +12,8 @@ import DoctorAbout from '../components/pages/Doctors/DoctorAbout'
 import DoctorsDetails from '../components/pages/Doctors/DoctorsDetails'
 import MyAccount from '../Dashboard/user-account/MyAccount.jsx'
 import Dashboard from "../Dashboard/doctor-account/Dashboard"
+import Dprofile from "../Dashboard/doctor-account/Profile.jsx"
+import Dappointment from "../Dashboard/doctor-account/Appoinment.jsx"
 
 import ProtectedRoute from './ProtectedRoute'
 import Profile from '../Dashboard/user-account/Profile.jsx'
@@ -32,6 +34,9 @@ export default function Routers() {
         <Route path='/users/profiles/me' element={<MyAccount/>} />
           <Route path='/users/profile/me/profile' element={<Profile/>} />
         <Route path='/doctor/profile/me' element={<Dashboard/>}/>
+        <Route path='/doctor/appointment' element={<Dappointment/>}/>
+        <Route path='/doctor/profile/me/profile' element={<Dprofile/>}/>
+      
 
 
     </Routes>

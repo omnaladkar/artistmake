@@ -1,29 +1,31 @@
 import { useEffect, useState } from 'react';
-import signupImg from "../../assets/images/signup.gif";
+
 import { Link, useNavigate } from 'react-router-dom';
 import uploadImageToCloudinary from '../../utils/uploadCloudinary';
 import { BASE_URL, token } from '../../config';
 import { toast } from 'react-toastify';
 import { HashLoader } from 'react-spinners';
 
-export default function Profile({ user }) {
+export default function Edit({ user }) {
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [loading, setLoading] = useState(false);
+ 
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    password: "",
-    photo: "null",
-    gender: "",
-    bloodType: "",
+   qualifications:"",
+   experiences:""
   });
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    setFormData({ name: user.name, email: user.email, photo: user.photo, gender: user.gender, bloodType: user.bloodType });
+    setFormData({ name: user.name, email: user.email, qualification:user.qualification,experiences:user.experiences });
   }, [user]);
+
+ 
 
   const handleInputChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,11 +42,11 @@ export default function Profile({ user }) {
     event.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch(`${BASE_URL}/api/v1/users/${user._id}`, {
+      const res = await fetch(`${BASE_URL}/api/v1/doctors/${user._id}`, {
         method: 'put',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
+        
         },
         body: JSON.stringify(formData)
       });
@@ -69,6 +71,7 @@ export default function Profile({ user }) {
     <div className='mt-10'>
        <form onSubmit={submitHandler}>
              <div className="mb-5">
+                Name:<br></br>
             <input
               type="name"
               placeholder='Enter Your Username'
@@ -81,6 +84,7 @@ export default function Profile({ user }) {
             />
           </div>
           <div className="mb-5">
+            Email: <br></br>
             <input
               type="email"
               placeholder='Enter Your Username'
@@ -94,6 +98,7 @@ export default function Profile({ user }) {
             />
           </div>
           <div className="mb-5">
+            Password: <br></br>
             <input
               type="password"
               placeholder='Enter Your Username'
@@ -106,6 +111,35 @@ export default function Profile({ user }) {
             />
           </div>
           <div className="mb-5">
+            Qualifications : <br></br>
+            <input
+              type="text"
+              placeholder='Qualification'
+              name="qualifications"
+            
+              value={formData.qualifications}
+              onChange={handleInputChange}
+              className='w-fullpr-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor cursor-pointer'
+              required
+            />
+          </div>
+          <div className="mb-5">
+         Experience : <br></br>
+            <input
+              type="text"
+              placeholder='Experience'
+              name="experiences"
+            
+              value={formData.qualification}
+              onChange={handleInputChange}
+              className='w-fullpr-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor cursor-pointer'
+              required
+            />
+          </div>
+        
+
+          {/* <div className="mb-5">
+            BloodType:
             <input
               type="text"
               placeholder='Blood type'
@@ -116,7 +150,7 @@ export default function Profile({ user }) {
               className='w-fullpr-4 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor cursor-pointer'
               required
             />
-          </div>
+          </div> */}
          <div className="mb-5 flex items-center justify-between">
           {/* <label  className='text-headingColor font-bold text-[16px] leading-7'>
             Are youu a: 
@@ -126,7 +160,7 @@ export default function Profile({ user }) {
               <option value="doctor">doctor</option>
             </select>
           </label> */}
-          <label  className='text-headingColor font-bold text-[16px] leading-7'>
+          {/* <label  className='text-headingColor font-bold text-[16px] leading-7'>
            Gender: 
             <select name="gender"    value={formData.gender}
               onChange={handleInputChange} className='text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none'>
@@ -135,7 +169,7 @@ export default function Profile({ user }) {
               <option value="female">Female</option>
               <option value="other">Other</option>
             </select>
-          </label>
+          </label> */}
          </div>
 
          <div className="mb-5 flex items-center gap-3">
@@ -162,11 +196,7 @@ export default function Profile({ user }) {
             </button>
           </div>
 
-          {/* <p className="mt-5 text-textColor text-center">
-            Alredy have an account? <Link to='/login' className='text-primaryColor font-medium ml-1'>
-              Login
-            </Link>
-          </p> */}
+         
               
              </form>
     </div>

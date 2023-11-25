@@ -5,6 +5,7 @@
 
 import mongoose from "mongoose";
 import Doctor from "./DoctorSchema.js";
+import User from "./UserSchema.js"
 
 const bookingSchema = new mongoose.Schema(
   {
@@ -14,7 +15,7 @@ const bookingSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Types.ObjectId,
-      ref: "User",
+      ref: User,
     },
     ticketPrice: { type: String, required: true },
         appointmentDate: {

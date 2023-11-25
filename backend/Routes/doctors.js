@@ -15,7 +15,7 @@ router.use("/:doctorId/bookings",bookingRouter);
 
 router.get('/:id',getSingleDoctor)
 router.get('/',getAllDoctor)
-router.put('/:id',authenticate,restrict(["doctor"]),updateDoctor)
+router.put('/:id',updateDoctor)
 router.delete('/:id',authenticate,restrict(["doctor"]),deleteDoctor) 
 router.get('/profile/me',authenticate,getDoctorProfile)
 export default router

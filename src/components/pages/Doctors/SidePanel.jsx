@@ -3,6 +3,7 @@ import Calendar from 'react-calendar';
 import TimePicker from 'react-time-picker';
 import { BASE_URL } from '../../../config';
 import { useParams } from 'react-router-dom';
+import usefetchData from '../../../hooks/usefetchData';
 
 export default function SidePanel() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -11,6 +12,12 @@ export default function SidePanel() {
   const [bookings, setBookings] = useState([]);
 
   const {id} = useParams();
+  const {
+    data:userData,
+    loading,
+    error,
+
+  } = usefetchData(`${BASE_URL}/api/v1/users/profile/me`);
 
   useEffect(() => {
     fetchBookingDetails();
@@ -65,6 +72,9 @@ export default function SidePanel() {
             body: JSON.stringify({
               ticketPrice: 700, 
   appointmentDate: selectedDate.toISOString() ,
+  user: userData._id
+     
+      
 
 
              

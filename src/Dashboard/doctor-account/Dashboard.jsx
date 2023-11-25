@@ -9,6 +9,9 @@ import Error from '../../components/Error/Error';
 import { Link, useHistory } from 'react-router-dom';
 import usefetchData from '../../hooks/usefetchData';
 import { BASE_URL } from '../../config';
+import Profile from './Profile';
+import Appointment from './Appoinment'
+import Edit from './Edit';
 
 export default function Dashboard() {
   const  {dispatch} =  useContext(authContext);
@@ -38,12 +41,43 @@ export default function Dashboard() {
    { ! loading && !error && <div className="grid md:grid-cols-3 gap-10">
     <div className="pb-[50px] px-[30px] rounded-md">
       <div className="flex items-center justify-center">
-        <figure className="w-[100px] h-[100px] rounded-full border-2 border-solid border-primaryColor">
+
+      <div className="mt-[50px] md:mt-[100px]">
+
+      
+
+
+
+      <button onClick={()=>setTab('profile')} className={`${tab==="profile" } w-full bg-[#eb9a9a]  p-3 text-[16px] leading-7 rounded-md text-white`}>
+Overview
+</button>
+
+<button onClick={()=>setTab('appointment')} className={`${tab==="appointment" } w-full bg-[#efa5a5]  mt-4 p-3 text-[16px] leading-7 rounded-md text-white`}  >
+
+  Appointments
+</button>
+<button onClick={()=>setTab('edit')} className={`${tab==="edit" } w-full bg-[#efa5a5]  mt-4 p-3 text-[16px] leading-7 rounded-md text-white`}  >
+
+  Edit Profile
+</button>
+
+
+
+
+
+
+
+
+
+</div>
+         
+
+        {/* <figure className="w-[100px] h-[100px] rounded-full border-2 border-solid border-primaryColor">
         <img src={userData.photo} alt="" className='w-full h-full rounded-full' />
-        </figure>
+        </figure> */}
       </div>
 
-      <div className="text-center mt-4">
+      {/* <div className="text-center mt-4">
         <h3 className="text-[18px] leading-[30px] text-headingColor font-bold">
         {userData.name}
         </h3>
@@ -56,8 +90,11 @@ export default function Dashboard() {
            {userData.bloodType}
           </span>
         </p>
-      </div>
+      </div> */}
       <div className="mt-[50px] md:mt-[100px]">
+
+      
+
         <Link to='/home'>
         <button className="w-full bg-[#181A1E] p-3 text-[16px] leading-7 rounded-md text-white" onClick={handleLogout} >
 
@@ -71,25 +108,24 @@ export default function Dashboard() {
     </div>
 
     <div className="md:col-span-2 md:px-[30px]">
-      <div>
-        <button  onClick={()=>setTab('booking')} className={`${tab==="booking" && "bg-primaryColor text-white font-normal"} p-2 mr-5 px-5 rounded-md text-headingColor font-semibold text-[16px] leading-7 border border-solid border-primaryColor`}>
-          My Bookings
-        </button>
-        <Link to="/home">
-        <button onClick={()=>setTab('settings')} className={`${tab==="settings" && "bg-primaryColor text-white font-normal"} p-2 mr-5 px-5 rounded-md text-headingColor font-semibold text-[16px] leading-7 border border-solid border-primaryColor`}>
-        Profile Setting 
-        </button>
-        </Link>
-        
-      </div>
+    
 
+          
 
-     {/* {
-       tab==='booking' && <MyBookings/>
-     }
-     {
-       tab==='settings' && <Profile user ={userData}/>
-     } */}
+     
+
+    {
+         tab==='appointment' && <Appointment user={userData}/>
+       }
+       {
+         tab==='profile' && <Profile userData ={userData}/>
+       }
+        {
+         tab==='edit' && <Edit user ={userData}/>
+       }
+     
+
+     
     </div>
 
 

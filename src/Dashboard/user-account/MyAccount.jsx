@@ -123,7 +123,7 @@ export default function MyAccount() {
 
 
        {
-         tab==='booking' && <MyBookings/>
+         tab==='booking' && <MyBookings user={userData}/>
        }
        {
          tab==='settings' && <Profile user ={userData}/>
