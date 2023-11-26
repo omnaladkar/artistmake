@@ -42,6 +42,7 @@ export default function Appointment({user}) {
         <tbody>
           {bookings.map((appointment, index) => (
             <tr key={index}>
+               <td style={{ padding: '8px', border: '1px solid #ddd' }}>UserName</td>
               <td style={{ padding: '8px', border: '1px solid #ddd' }}>{appointment.ticketPrice}</td>
               <td style={{ padding: '8px', border: '1px solid #ddd' }}>
                 {new Date(appointment.appointmentDate).toLocaleString()}

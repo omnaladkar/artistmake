@@ -1,6 +1,6 @@
 import React from 'react'
 import { formateDate } from '../../../utils/formateDate'
-export default function DoctorAbout({name,hospital,specialization,education}) {
+export default function DoctorAbout({name,hospital,specialization,education,about}) {
     
 
   return (
@@ -12,7 +12,7 @@ export default function DoctorAbout({name,hospital,specialization,education}) {
         <span className="text-irisBlueColor font-bold text-[24px] leading-9">{name}</span>
     </h3>
     <p className="text_para">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis eius assumenda corrupti at fugiat ipsum odio laudantium quisquam veritatis consectetur velit illo ullam animi necessitatibus vero voluptatum fuga consequuntur, aspernatur perspiciatis adipisci. Necessitatibus et non sapiente sit distinctio, repellat illo totam perspiciatis, inventore ex assumenda odit natus cumque saepe nostrum?
+        {about}
     </p>
 </div>
 <div className="mt-12">

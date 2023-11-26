@@ -24,7 +24,7 @@ const {id} = useParams();
       });
   }, []); 
    
- const {name,avgRating,totalRating,photo,specialization,totalPatient,hospital} = doctors
+ const {name,avgRating,totalRating,education,photo,specialization,totalPatient,hospital,about} = doctors
   return (
     <section>
     <div className="max-w-[1170px] px-5 mx-auto">
@@ -75,7 +75,7 @@ const {id} = useParams();
 
               <div className="mt-[50px]">
                 {
-                   tab === 'about' && <DoctorAbout name={name} hospital={hospital} specialization={specialization} education={name}/>
+                   tab === 'about' && <DoctorAbout name={name} hospital={hospital} specialization={specialization} education={education} about={about} />
                 }
                 {
                     tab === 'feedback' && <Feedback/>
