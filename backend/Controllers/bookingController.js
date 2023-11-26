@@ -3,6 +3,21 @@ import Doctor from "../models/DoctorSchema.js"
 import User from "../models/UserSchema.js"
 // Controller for getting all bookings
 import { useParams } from 'react-router-dom';
+export const gettotalBookings = async (req, res) => {
+//   const { doctorId } = req.params;
+// console.log(doctorId)
+
+  try {
+    
+          
+    const bookings = await Booking.find({
+      // doctor:doctorId
+    });
+    res.json(bookings);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 export const getAllBookings = async (req, res) => {
   const { doctorId } = req.params;

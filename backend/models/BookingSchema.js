@@ -17,6 +17,10 @@ const bookingSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: User,
     },
+    patient:{
+      type:String,
+      ref:User
+    },
     ticketPrice: { type: String, required: true },
         appointmentDate: {
             type: Date,

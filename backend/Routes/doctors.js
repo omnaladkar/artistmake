@@ -13,6 +13,7 @@ const router= express.Router()
 router.use("/:doctorId/reviews",reviewRouter);
 router.use("/:doctorId/bookings",bookingRouter);
 
+
 router.get('/:id',getSingleDoctor)
 router.get('/',getAllDoctor)
 router.put('/:id',updateDoctor)

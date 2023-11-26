@@ -110,24 +110,3 @@ export const getUserProfile  =  async(req,res)=>{
     }
 }
 
-
-
-// export const getMyAppointments =  async(req,res) => {
-//     try {
-
-//         const bookings = await Booking.find({user:req.userId})
-
-//         const doctorIds = bookings.map(el=>el.doctor.id)
-
-//         const doctors = await Doctor.find({_id : {$in:doctorIds}}).select('-password')
-//         res.status(200).json({success:true,message:'appooinment are getting', data: doctors})
-//     } catch (error) {
-//         res.status(404).json({
-//             success:false,
-//             message:"No user found"
-//         });
-        
-//     }
-// }
-
-// Backend route to get user appointments

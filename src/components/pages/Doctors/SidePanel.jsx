@@ -72,7 +72,9 @@ export default function SidePanel() {
             body: JSON.stringify({
               ticketPrice: 700, 
   appointmentDate: selectedDate.toISOString() ,
-  user: userData._id
+  user: userData._id,
+  patient: userData.name,
+
      
       
 
