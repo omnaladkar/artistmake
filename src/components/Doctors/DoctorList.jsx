@@ -7,7 +7,7 @@ export default function DoctorList() {
 
   useEffect(() => {
     // Fetch data from the API
-    axios.get('http://localhost:5000/api/v1/doctors')
+    axios.get('https://doctor-appoint-u86o.onrender.com/api/v1/doctors')
       .then(response => {
         setDoctors(response.data.data);
       })

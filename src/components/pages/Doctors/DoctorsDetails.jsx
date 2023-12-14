@@ -15,7 +15,7 @@ const {id} = useParams();
 
   useEffect(() => {
     // Fetch data from the API
-    axios.get(`http://localhost:5000/api/v1/doctors/${id}`)
+    axios.get(`https://doctor-appoint-u86o.onrender.com/api/v1/doctors/${id}`)
       .then(response => {
         setDoctors(response.data.data);
       })
