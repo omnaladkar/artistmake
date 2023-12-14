@@ -2,7 +2,7 @@ import Booking from '../models/BookingSchema.js';
 import Doctor from "../models/DoctorSchema.js"
 import User from "../models/UserSchema.js"
 // Controller for getting all bookings
-import { useParams } from 'react-router-dom';
+
 export const gettotalBookings = async (req, res) => {
 //   const { doctorId } = req.params;
 // console.log(doctorId)
