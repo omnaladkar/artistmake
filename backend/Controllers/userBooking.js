@@ -3,7 +3,7 @@ import Doctor from "../models/DoctorSchema.js"
 
 import User from "../models/UserSchema.js"
 // Controller for getting all bookings
-import { useParams } from 'react-router-dom';
+
 
 export const getAllBookings = async (req, res) => {
     try {
