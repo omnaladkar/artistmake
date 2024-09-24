@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Instance 1: Start RabbitMQ Consumer
+start_consumer() {
+  echo "Starting RabbitMQ Consumer on Instance 1..."
+  # Replace with your consumer script's path on Instance 1
+  node /path_to_your_code/consumer.js &
+}
+
+# Instance 1: Start RabbitMQ Producer
+start_producer() {
+  echo "Starting RabbitMQ Producer on Instance 1..."
+  # Replace with your producer script's path on Instance 1
+  node /path_to_your_code/producer.js &
+}
+
+# Instance 2: Start Backend (API server) via SSH
+start_backend_remote() {
+  echo "Starting Backend on Instance 2..."
+  ssh user2@instance2_ip "cd /path_to_your_code/backend && npm start" &
+}
+
+# Instance 2: Start Frontend via SSH
+start_frontend_remote() {
+  echo "Starting Frontend on Instance 2..."
+  ssh user2@instance2_ip "cd /path_to_your_code/frontend && npm start" &
+}
+
+# Start services on Instance 1
+echo "Starting services on Instance 1 (RabbitMQ Producer/Consumer)..."
+start_producer
+sleep 1  # Small delay to ensure the producer is started
+start_consumer
+
+# Start services on Instance 2 via SSH
+echo "Starting services on Instance 2 (Backend/Frontend)..."
+start_backend_remote
+start_frontend_remote
+
+echo "All services on both instances are up and running!"
