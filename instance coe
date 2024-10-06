@@ -1,40 +1,21 @@
-#!/bin/bash
+Function ARN: Amazon Resource Name (ARN) that uniquely identifies the Lambda function.
 
-# Instance 1: Start RabbitMQ Consumer
-start_consumer() {
-  echo "Starting RabbitMQ Consumer on Instance 1..."
-  # Replace with your consumer script's path on Instance 1
-  node /path_to_your_code/consumer.js &
-}
+Memory/Timeout: Indicates how much memory is allocated to the function and its execution timeout limit.
 
-# Instance 1: Start RabbitMQ Producer
-start_producer() {
-  echo "Starting RabbitMQ Producer on Instance 1..."
-  # Replace with your producer script's path on Instance 1
-  node /path_to_your_code/producer.js &
-}
+Triggers: These are the AWS services or events that trigger the Lambda function. For example, an API Gateway, S3 bucket event, or DynamoDB stream.
 
-# Instance 2: Start Backend (API server) via SSH
-start_backend_remote() {
-  echo "Starting Backend on Instance 2..."
-  ssh user2@instance2_ip "cd /path_to_your_code/backend && npm start" &
-}
+Layers: Lambda layers allow you to add external dependencies and libraries to your function. You can reuse the layers in multiple Lambda functions.
 
-# Instance 2: Start Frontend via SSH
-start_frontend_remote() {
-  echo "Starting Frontend on Instance 2..."
-  ssh user2@instance2_ip "cd /path_to_your_code/frontend && npm start" &
-}
+Memory (128 MB to 10 GB): The amount of memory allocated to the Lambda function. The CPU allocated scales with the amount of memory.
 
-# Start services on Instance 1
-echo "Starting services on Instance 1 (RabbitMQ Producer/Consumer)..."
-start_producer
-sleep 1  # Small delay to ensure the producer is started
-start_consumer
+Logs (CloudWatch): Lambda automatically integrates with Amazon CloudWatch to log information about the execution of your function, including performance metrics and error logs.
 
-# Start services on Instance 2 via SSH
-echo "Starting services on Instance 2 (Backend/Frontend)..."
-start_backend_remote
-start_frontend_remote
+Metrics: CloudWatch metrics provide details such as the number of invocations, duration, error count, and success rate.
+Alarms: You can configure CloudWatch Alarms to notify you when certain thresholds are breached (e.g., a high number of errors).
+X-Ray Tracing: AWS X-Ray helps trace and analyze requests as they travel through your function and connected services. You can enable X-Ray tracing to troubleshoot performance bottlenecks
+Reserved Concurrency: You can limit the number of simultaneous executions of your Lambda function by setting a reserved concurrency limit.
+Provisioned Concurrency: Ensures that your Lambda function is initialized and ready to respond instantly when triggered, improving cold start performance.
 
-echo "All services on both instances are up and running!"
+Versions: AWS Lambda supports versioning, allowing you to publish different versions of your function’s code. This is useful for deploying updates while keeping the old versions intact.
+
+Aliases: Aliases are like pointers to versions of your Lambda function. You can create an alias like "prod" or "test" that points to a specific version of your function.
